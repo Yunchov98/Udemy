@@ -16,7 +16,7 @@ function App() {
         setUserInput((state) => {
             return {
                 ...state,
-                [inputIdentifier]: newValue,
+                [inputIdentifier]: Number(newValue),
             };
         });
     }
