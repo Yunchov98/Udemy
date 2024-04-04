@@ -19,11 +19,25 @@ function App() {
         });
     };
 
+    const handleAddProject = (projectData) => {
+        setProjectsState((state) => {
+            const newProject = {
+                ...projectData,
+                id: Math.random(),
+            };
+
+            return {
+                ...state,
+                projects: [...state.projects, newProject],
+            };
+        });
+    };
+
     return (
         <main className="h-screen my-8 flex gap-8">
             <ProjectsSidebar onStartAddProject={handleStartAddProject} />
             {projectsState.selectedProject === null ? (
-                <NewProject />
+                <NewProject onAdd={handleAddProject} />
             ) : (
                 <NoProjectSelected onStartAddProject={handleStartAddProject} />
             )}
