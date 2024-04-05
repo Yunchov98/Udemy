@@ -19,5 +19,9 @@
  ## Project details with tasks
  ![Screenshot 2024-04-05 125837](https://github.com/Yunchov98/Udemy/assets/107936254/63528ab3-2504-43ad-a001-1640ce890dd2)
 
+ ## Error modal
+ ![Screenshot 2024-04-05 130129](https://github.com/Yunchov98/Udemy/assets/107936254/b76ebf47-eb9c-45ee-8b00-1e7d85b6a344)
+
+
 
 
