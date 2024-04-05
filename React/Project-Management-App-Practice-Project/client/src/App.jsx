@@ -34,6 +34,15 @@ function App() {
         });
     };
 
+    const handleCancelAddProject = () => {
+        setProjectsState((state) => {
+            return {
+                ...state,
+                selectedProject: undefined,
+            };
+        });
+    };
+
     return (
         <main className="h-screen my-8 flex gap-8">
             <ProjectsSidebar
@@ -41,7 +50,10 @@ function App() {
                 projects={projectsState.projects}
             />
             {projectsState.selectedProject === null ? (
-                <NewProject onAdd={handleAddProject} />
+                <NewProject
+                    onAdd={handleAddProject}
+                    onCancel={handleCancelAddProject}
+                />
             ) : (
                 <NoProjectSelected onStartAddProject={handleStartAddProject} />
             )}
