@@ -1,9 +1,16 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import QUESTIONS from '../questions';
 
 import Answers from './Answers';
 import QuestionTimer from './QuestionTimer';
+
+Question.propTypes = {
+    index: PropTypes.number,
+    onSelectAnswer: PropTypes.func,
+    onSkip: PropTypes.func,
+};
 
 export default function Question({ index, onSelectAnswer, onSkip }) {
     const [answer, setAnswer] = useState({

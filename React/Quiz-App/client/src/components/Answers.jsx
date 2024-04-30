@@ -1,4 +1,12 @@
 import { useRef } from 'react';
+import PropTypes from 'prop-types';
+
+Answers.propTypes = {
+    answers: PropTypes.array,
+    selectedAnswer: PropTypes.string,
+    answerState: PropTypes.string,
+    onSelect: PropTypes.func,
+};
 
 export default function Answers({
     answers,
