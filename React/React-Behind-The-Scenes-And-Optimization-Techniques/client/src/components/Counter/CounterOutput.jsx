@@ -1,8 +1,14 @@
+import PropTypes from 'prop-types';
+
 import { log } from '../../log.js';
 
-export default function CounterOutput({ value }) {
-  log('<CounterOutput /> rendered', 2);
+CounterOutput.propTypes = {
+    value: PropTypes.number,
+};
 
-  const cssClass = value >= 0 ? 'counter-output' : 'counter-output negative';
-  return <span className={cssClass}>{value}</span>;
+export default function CounterOutput({ value }) {
+    log('<CounterOutput /> rendered', 2);
+
+    const cssClass = value >= 0 ? 'counter-output' : 'counter-output negative';
+    return <span className={cssClass}>{value}</span>;
 }
