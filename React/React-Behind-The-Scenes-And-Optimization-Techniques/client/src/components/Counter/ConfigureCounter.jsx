@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+
 import { log } from '../../log';
 
 ConfigureCounter.propTypes = {
@@ -7,7 +8,8 @@ ConfigureCounter.propTypes = {
 };
 
 export default function ConfigureCounter({ onSet }) {
-    log('<ConfigureCounter />', 1)
+    log('<ConfigureCounter />', 1);
+
     const [enteredNumber, setEnteredNumber] = useState(0);
 
     function handleChange(event) {
