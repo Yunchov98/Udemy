@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { log } from '../../log.js';
 
 HistoryItem.propTypes = {
-    count: PropTypes.string,
+    count: PropTypes.object,
 };
 
 CounterHistory.propTypes = {
@@ -22,7 +22,7 @@ function HistoryItem({ count }) {
 
     return (
         <li onClick={handleClick} className={selected ? 'selected' : undefined}>
-            {count}
+            {count.value}
         </li>
     );
 }
@@ -32,8 +32,8 @@ export default function CounterHistory({ history }) {
 
     return (
         <ol>
-            {history.map((count, index) => (
-                <HistoryItem key={index} count={count} />
+            {history.map((count) => (
+                <HistoryItem key={count.id} count={count} />
             ))}
         </ol>
     );
