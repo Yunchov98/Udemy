@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 
 import { currencyForamtter } from '../util/foramtting';
+import { calculateTotal } from '../util/cartTotal';
 import CartContext from '../store/cartContext';
 
 import Modal from './UI/Modal';
@@ -12,9 +13,7 @@ export default function Cart() {
     const { items, addItem, removeItem } = useContext(CartContext);
     const { progress, hideCart } = useContext(UserProgressContext);
 
-    const cartTotal = items.reduce((totalPrice, item) => {
-        return totalPrice + item.quantity * item.price;
-    }, 0);
+    const cartTotal = calculateTotal(items);
 
     function handleCloseCart() {
         hideCart();
