@@ -11,7 +11,8 @@ import CartItem from './CartItem';
 
 export default function Cart() {
     const { items, addItem, removeItem } = useContext(CartContext);
-    const { progress, hideCart } = useContext(UserProgressContext);
+    const { progress, hideCart, showCheckout } =
+        useContext(UserProgressContext);
 
     const cartTotal = calculateTotal(items);
 
@@ -19,8 +20,16 @@ export default function Cart() {
         hideCart();
     }
 
+    function handleGoToCheckout() {
+        showCheckout();
+    }
+
     return (
-        <Modal className="cart" open={progress === 'cart'}>
+        <Modal
+            className="cart"
+            open={progress === 'cart'}
+            onClose={progress === 'cart' ? handleCloseCart : null}
+        >
             <h2>Your Cart</h2>
             <ul>
                 {items.map((item) => (
@@ -39,7 +48,9 @@ export default function Cart() {
                 <Button textOnly onClick={handleCloseCart}>
                     Close
                 </Button>
-                {items.length > 0 && <Button>Go Checkout</Button>}
+                {items.length > 0 && (
+                    <Button onClick={handleGoToCheckout}>Go Checkout</Button>
+                )}
             </p>
         </Modal>
     );
