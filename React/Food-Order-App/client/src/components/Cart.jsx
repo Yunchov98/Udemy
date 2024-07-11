@@ -6,9 +6,10 @@ import CartContext from '../store/cartContext';
 import Modal from './UI/Modal';
 import Button from './UI/Button';
 import UserProgressContext from '../store/userProgressContext';
+import CartItem from './CartItem';
 
 export default function Cart() {
-    const { items } = useContext(CartContext);
+    const { items, addItem, removeItem } = useContext(CartContext);
     const { progress, hideCart } = useContext(UserProgressContext);
 
     const cartTotal = items.reduce((totalPrice, item) => {
@@ -24,9 +25,14 @@ export default function Cart() {
             <h2>Your Cart</h2>
             <ul>
                 {items.map((item) => (
-                    <li key={item.id}>
-                        {item.name} - {item.quantity}
-                    </li>
+                    <CartItem
+                        key={item.id}
+                        name={item.name}
+                        price={item.price}
+                        quantity={item.quantity}
+                        onIncrease={() => addItem(item)}
+                        onDecrease={() => removeItem(item.id)}
+                    />
                 ))}
             </ul>
             <p className="cart-total">{currencyForamtter.format(cartTotal)}</p>
