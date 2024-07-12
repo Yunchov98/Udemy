@@ -10,36 +10,35 @@ import UserProgressContext from '../store/userProgressContext';
 import CartItem from './CartItem';
 
 export default function Cart() {
-    const { items, addItem, removeItem } = useContext(CartContext);
-    const { progress, hideCart, showCheckout } =
-        useContext(UserProgressContext);
+    const cartCtx = useContext(CartContext);
+    const userCtx = useContext(UserProgressContext);
 
-    const cartTotal = calculateTotal(items);
+    const cartTotal = calculateTotal(cartCtx.items);
 
     function handleCloseCart() {
-        hideCart();
+        userCtx.hideCart();
     }
 
     function handleGoToCheckout() {
-        showCheckout();
+        userCtx.showCheckout();
     }
 
     return (
         <Modal
             className="cart"
-            open={progress === 'cart'}
-            onClose={progress === 'cart' ? handleCloseCart : null}
+            open={userCtx.progress === 'cart'}
+            onClose={userCtx.progress === 'cart' ? handleCloseCart : null}
         >
             <h2>Your Cart</h2>
             <ul>
-                {items.map((item) => (
+                {cartCtx.items.map((item) => (
                     <CartItem
                         key={item.id}
                         name={item.name}
                         price={item.price}
                         quantity={item.quantity}
-                        onIncrease={() => addItem(item)}
-                        onDecrease={() => removeItem(item.id)}
+                        onIncrease={() => cartCtx.addItem(item)}
+                        onDecrease={() => cartCtx.removeItem(item.id)}
                     />
                 ))}
             </ul>
@@ -48,7 +47,7 @@ export default function Cart() {
                 <Button textOnly onClick={handleCloseCart}>
                     Close
                 </Button>
-                {items.length > 0 && (
+                {cartCtx.items.length > 0 && (
                     <Button onClick={handleGoToCheckout}>Go Checkout</Button>
                 )}
             </p>

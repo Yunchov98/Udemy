@@ -6,10 +6,10 @@ import CartContext from '../store/cartContext';
 import Button from './UI/Button';
 
 export default function MealItem({ meal }) {
-    const { addItem } = useContext(CartContext);
+    const cartCtx = useContext(CartContext);
 
     function handleAddMealToCart() {
-        addItem(meal);
+        cartCtx.addItem(meal);
     }
 
     return (
